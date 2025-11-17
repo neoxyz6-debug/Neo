@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Sweetie</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    html, body { height: auto; }
+    body { overflow-y: auto; }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 relative">
+  <div class="fixed inset-0 pointer-events-none" id="floating-hearts"></div>
+  <main class="relative z-10 flex flex-col">
+    <section class="min-h-screen flex flex-col items-center justify-center px-4 py-12">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-bold text-pink-800 mb-4 font-serif">
+          Happy 2nd Us Day
+        </h1>
+        <p class="text-xl md:text-2xl text-pink-600 font-light">
+          My Sweetie
+        </p>
+      </div>
+      <div class="relative">
+        <div class="envelope-container cursor-pointer" id="envelope">
+          <div class="envelope bg-white rounded-lg shadow-2xl p-6 mx-auto relative overflow-hidden glow-pink"
+               style="width: 320px; height: 200px;">
+            <div class="envelope-flap absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-pink-200 to-pink-300 rounded-t-lg transition-transform duration-1000 ease-out" id="flap">
+              <div class="absolute bottom-0 left-0 w-full h-1 bg-pink-400"></div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="heart-icon text-6xl text-pink-400 transition-all duration-1000" id="heart">
+                ♥
+              </div>
+            </div>
+            <div class="absolute top-2 right-2 text-pink-300 text-2xl">🌸</div>
+            <div class="absolute bottom-2 left-2 text-pink-300 text-2xl">🌸</div>
+            <div class="absolute top-2 left-2 text-pink-300 text-2xl">💕</div>
+            <div class="absolute bottom-2 right-2 text-pink-300 text-2xl">💕</div>
+          </div>
+          <p class="text-center text-pink-600 mt-4 text-sm animate-bounce" id="click-hint">
+            Click to open your love letter ✨
+          </p>
+        </div>
+      </div>
+      <div class="mt-10 text-pink-500 text-sm flex items-center gap-2">
+        <span class="animate-pulse">↓</span>
+        <span>Scroll for the letter</span>
+      </div>
+    </section>
+    <section class="w-full px-4 pb-24">
+      <div id="message-card" class="hidden message-card max-w-2xl mx-auto bg-white/90 backdrop-blur-sm rounded-2xl p-8 md:p-12 shadow-2xl border border-pink-200 transform transition-all duration-1000 ease-out">
+        <div class="text-center space-y-6">
+          <div class="text-pink-300 text-3xl">
+            💝 💖 💝
+          </div>
+          <div class="space-y-4 text-gray-700 leading-relaxed">
+
+            <p class="text-lg md:text-xl font-medium text-pink-800">
+              My Beloved,
+            </p>
+            
+            <p class="text-base md:text-lg">
+            Two years ago, you became the most wonderful part of my life. Since then,
+             we’ve shared sadness, joy, and many unforgettable moments.
+            </p>
+
+            <p class="text-base md:text-lg">
+              Your kindness and warmth always comfort me, and I love hearing your voice every day. Your smile and laughter give me energy.
+            Every day with you feels special, and every moment with you means so much to me.
+            </p>
+
+            <p class="text-base md:text-lg">
+           Thank you for being patient, for bringing happiness into my life, and for loving me. I’m sorry for any trouble I may have caused.
+           I want to spend my time with you and make you happy.
+            </p>
+
+            <p class="text-base md:text-lg font-medium text-pink-800">
+              I love you more than words can say.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-pink-200">
+            <div class="text-pink-600 text-sm">
+              <p class="text-xs mt-1">Nov,17th 2023-Nov,17th 2025</p>
+            </div>
+          </div>
+          <div class="pt-4">
+            <p class="text-pink-700 font-script text-lg">
+              Forever yours,
+            </p>
+            <p class="text-pink-800 font-script text-xl mt-2">
+              ❤️ Your Neo :3
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 text-center">
+        <div class="text-pink-300 text-2xl animate-pulse">
+          🌹 💕 🌹
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    const envelope = document.getElementById("envelope");
+    const flap = document.getElementById("flap");
+    const heart = document.getElementById("heart");
+    const messageCard = document.getElementById("message-card");
+    const clickHint = document.getElementById("click-hint");
+
+    let isOpen = false;
+    const autoTimer = setTimeout(() => {
+      openEnvelope();
+    }, 2000);
+
+    envelope.addEventListener("click", openEnvelope);
+
+    function openEnvelope() {
+      if (isOpen) return;
+      isOpen = true;
+      flap.classList.add("-translate-y-full");
+      heart.classList.add("scale-150", "text-pink-500");
+      if (clickHint) clickHint.style.display = "none";
+      setTimeout(() => {
+        messageCard.classList.remove("hidden");
+        messageCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 800);
+    }
+    const heartsContainer = document.getElementById("floating-hearts");
+    for (let i = 0; i < 20; i++) {
+      const heartEl = document.createElement("div");
+      heartEl.textContent = "♥";
+      heartEl.className = "absolute text-pink-200 opacity-30 animate-pulse";
+      heartEl.style.left = Math.random() * 100 + "%";
+      heartEl.style.top = Math.random() * 100 + "%";
+      heartEl.style.animationDelay = Math.random() * 3 + "s";
+      heartEl.style.animationDuration = 3 + Math.random() * 2 + "s";
+      heartEl.style.fontSize = 20 + Math.random() * 20 + "px";
+      heartsContainer.appendChild(heartEl);
+    }
+  </script>
+</body>
+</html>
